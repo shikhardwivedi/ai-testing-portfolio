@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="AI Testing Portfolio" verbose="1">
+
+    <listeners>
+        <listener class-name=
+                          "com.shikhar.utils.ExtentReportListener"/>
+    </listeners>
+
+    <test name="Login Tests">
+        <classes>
+            <class name="com.shikhar.tests.LoginTest"/>
+        </classes>
+    </test>
+
+    <test name="API Tests">
+        <classes>
+            <class name="com.shikhar.tests.ApiTest"/>
+        </classes>
+    </test>
+
+    <test name="BDD Tests">
+        <classes>
+            <class name="com.shikhar.tests.TestRunner"/>
+        </classes>
+    </test>
+
+</suite>

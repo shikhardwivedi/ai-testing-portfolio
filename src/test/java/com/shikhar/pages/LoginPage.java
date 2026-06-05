@@ -12,18 +12,19 @@ public class LoginPage {
     WebDriverWait wait;
 
     // Locators
-    By usernameField = By.name("username");
-    By passwordField = By.name("password");
-    By loginButton   = By.cssSelector("button[type='submit']");
-    By errorMessage  = By.cssSelector(".oxd-alert-content-text");
+    By usernameField = By.id("user-name");
+    By passwordField = By.id("password");
+    By loginButton   = By.id("login-button");
+    By errorMessage  = By.cssSelector(".error-message-container h3");
 
     // Constructor
     public LoginPage(WebDriver driver) {
         this.driver = driver;
-        this.wait   = new WebDriverWait(driver, Duration.ofSeconds(15));
+        this.wait   = new WebDriverWait(driver,
+                Duration.ofSeconds(10));
     }
 
-    // Actions — all use explicit wait now
+    // Actions
     public void enterUsername(String username) {
         wait.until(ExpectedConditions
                         .visibilityOfElementLocated(usernameField))
@@ -50,7 +51,6 @@ public class LoginPage {
                 .getText();
     }
 
-    // Combined action
     public void loginWith(String username, String password) {
         enterUsername(username);
         enterPassword(password);
