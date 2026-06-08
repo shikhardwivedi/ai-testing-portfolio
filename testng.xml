@@ -13,15 +13,15 @@
         </classes>
     </test>
 
-    <test name="API Tests">
+    <test name="E2E Tests">
         <classes>
-            <class name="com.shikhar.tests.ApiTest"/>
+            <class name="com.shikhar.tests.E2ETest"/>
         </classes>
     </test>
 
-    <test name="BDD Tests">
+    <test name="API Tests">
         <classes>
-            <class name="com.shikhar.tests.TestRunner"/>
+            <class name="com.shikhar.tests.ApiTest"/>
         </classes>
     </test>
 

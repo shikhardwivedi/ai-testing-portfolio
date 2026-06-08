@@ -1,5 +1,6 @@
 package com.shikhar.utils;
 
+import java.util.HashMap;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,6 +17,24 @@ public class BaseTest {
     public void setUp() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
+
+        // Suppress all popups
+        options.addArguments("--disable-save-password-bubble");
+        options.addArguments("--disable-notifications");
+        options.addArguments("--no-first-run");
+        options.addArguments("--disable-popup-blocking");
+        options.addArguments("--disable-extensions");
+        options.addArguments("--disable-infobars");
+        options.addArguments("--remote-allow-origins=*");
+
+        HashMap<String, Object> prefs = new HashMap<>();
+        prefs.put("credentials_enable_service", false);
+        prefs.put("profile.password_manager_enabled", false);
+        prefs.put("profile.password_manager_leak_detection", false);
+        options.setExperimentalOption("prefs", prefs);
+        options.setExperimentalOption("excludeSwitches",
+                new String[]{"enable-automation"});
+
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.manage().timeouts()
@@ -24,6 +43,8 @@ public class BaseTest {
                 .implicitlyWait(Duration.ofSeconds(10));
         driver.get("https://www.saucedemo.com");
     }
+
+
 
     @AfterMethod
     public void tearDown() {

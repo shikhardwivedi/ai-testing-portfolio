@@ -1,7 +1,9 @@
 package com.shikhar.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
@@ -11,49 +13,50 @@ public class LoginPage {
     WebDriver driver;
     WebDriverWait wait;
 
-    // Locators
-    By usernameField = By.id("user-name");
-    By passwordField = By.id("password");
-    By loginButton   = By.id("login-button");
-    By errorMessage  = By.cssSelector(".error-message-container h3");
+    @FindBy(id = "user-name")
+    WebElement usernameField;
 
-    // Constructor
+    @FindBy(id = "password")
+    WebElement passwordField;
+
+    @FindBy(id = "login-button")
+    WebElement loginButton;
+
+    @FindBy(css = ".error-message-container h3")
+    WebElement errorMessage;
+
     public LoginPage(WebDriver driver) {
         this.driver = driver;
-        this.wait   = new WebDriverWait(driver,
+        this.wait = new WebDriverWait(driver,
                 Duration.ofSeconds(10));
+        PageFactory.initElements(driver, this);
     }
 
-    // Actions
     public void enterUsername(String username) {
         wait.until(ExpectedConditions
-                        .visibilityOfElementLocated(usernameField))
-                .clear();
-        driver.findElement(usernameField).sendKeys(username);
+                .visibilityOf(usernameField));
+        usernameField.clear();
+        usernameField.sendKeys(username);
     }
 
     public void enterPassword(String password) {
-        wait.until(ExpectedConditions
-                        .visibilityOfElementLocated(passwordField))
-                .clear();
-        driver.findElement(passwordField).sendKeys(password);
+        passwordField.clear();
+        passwordField.sendKeys(password);
     }
 
     public void clickLogin() {
-        wait.until(ExpectedConditions
-                        .elementToBeClickable(loginButton))
-                .click();
-    }
-
-    public String getErrorMessage() {
-        return wait.until(ExpectedConditions
-                        .visibilityOfElementLocated(errorMessage))
-                .getText();
+        loginButton.click();
     }
 
     public void loginWith(String username, String password) {
         enterUsername(username);
         enterPassword(password);
         clickLogin();
+    }
+
+    public String getErrorMessage() {
+        wait.until(ExpectedConditions
+                .visibilityOf(errorMessage));
+        return errorMessage.getText();
     }
 }
