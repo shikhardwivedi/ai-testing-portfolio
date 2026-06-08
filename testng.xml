@@ -1,32 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="AI Testing Portfolio" verbose="1">
+<suite name="AI Testing Portfolio"
+       verbose="1"
+       parallel="tests"
+       thread-count="2">
 
     <listeners>
         <listener class-name=
                           "com.shikhar.utils.ExtentReportListener"/>
     </listeners>
 
-    <test name="Login Tests">
+    <!-- Chrome Tests -->
+    <test name="Login Tests - Chrome">
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="com.shikhar.tests.LoginTest"/>
         </classes>
     </test>
 
+    <test name="E2E Tests - Chrome">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="com.shikhar.tests.E2ETest"/>
+        </classes>
+    </test>
+
+    <!-- Firefox Tests -->
+    <test name="Login Tests - Firefox">
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="com.shikhar.tests.LoginTest"/>
+        </classes>
+    </test>
+
+    <test name="E2E Tests - Firefox">
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="com.shikhar.tests.E2ETest"/>
+        </classes>
+    </test>
+
+    <!-- Data Driven Tests -->
     <test name="Data Driven Tests">
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name=
                            "com.shikhar.tests.DataDrivenTest"/>
         </classes>
     </test>
 
-    <test name="E2E Tests">
-        <classes>
-            <class name="com.shikhar.tests.E2ETest"/>
-        </classes>
-    </test>
-
+    <!-- API Tests - no browser needed -->
     <test name="API Tests">
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="com.shikhar.tests.ApiTest"/>
         </classes>
