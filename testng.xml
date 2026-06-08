@@ -13,6 +13,13 @@
         </classes>
     </test>
 
+    <test name="Data Driven Tests">
+        <classes>
+            <class name=
+                           "com.shikhar.tests.DataDrivenTest"/>
+        </classes>
+    </test>
+
     <test name="E2E Tests">
         <classes>
             <class name="com.shikhar.tests.E2ETest"/>
