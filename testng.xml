@@ -3,44 +3,27 @@
 <suite name="AI Testing Portfolio"
        verbose="1"
        parallel="tests"
-       thread-count="2">
+       thread-count="3">
 
     <listeners>
         <listener class-name=
                           "com.shikhar.utils.ExtentReportListener"/>
     </listeners>
 
-    <!-- Chrome Tests -->
-    <test name="Login Tests - Chrome">
+    <test name="Login Tests">
         <parameter name="browser" value="chrome"/>
         <classes>
             <class name="com.shikhar.tests.LoginTest"/>
         </classes>
     </test>
 
-    <test name="E2E Tests - Chrome">
+    <test name="E2E Tests">
         <parameter name="browser" value="chrome"/>
         <classes>
             <class name="com.shikhar.tests.E2ETest"/>
         </classes>
     </test>
 
-    <!-- Firefox Tests -->
-    <test name="Login Tests - Firefox">
-        <parameter name="browser" value="firefox"/>
-        <classes>
-            <class name="com.shikhar.tests.LoginTest"/>
-        </classes>
-    </test>
-
-    <test name="E2E Tests - Firefox">
-        <parameter name="browser" value="firefox"/>
-        <classes>
-            <class name="com.shikhar.tests.E2ETest"/>
-        </classes>
-    </test>
-
-    <!-- Data Driven Tests -->
     <test name="Data Driven Tests">
         <parameter name="browser" value="chrome"/>
         <classes>
@@ -49,7 +32,6 @@
         </classes>
     </test>
 
-    <!-- API Tests - no browser needed -->
     <test name="API Tests">
         <parameter name="browser" value="chrome"/>
         <classes>
